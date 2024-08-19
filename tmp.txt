@@ -1,0 +1,36 @@
+DESCRIPTION = "A simple GUI based on pyqt5"
+
+LICENSE = "CLOSED"
+
+SRC_URI = "git://github.com/KarimZidan007/YOCTO_QT;branch=main;protocol=https"
+
+SRCREV="80ae03a10e183b56b29da5ee150f735c18cbe23b"
+
+
+
+inherit qmake5 
+
+DEPENDS = "qtbase qtdeclarative"
+
+
+WORKDIR="/home/karimzidantech/poky/temp_GUI"
+
+
+B= "${WORKDIR}/build"
+
+FILES_${PN} = "/usr/bin/qtgui"
+
+
+
+
+do_configure() {
+     tar -xzf ${WORKDIR}/git/*.tar.gz -C ${D}
+
+}
+
+
+do_compile() { qmake ${B}/untitled3.pro oe_runmake -C ${B} }
+
+
+
+PROVIDES="QT_GUI"
